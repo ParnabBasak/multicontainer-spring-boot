@@ -10,5 +10,5 @@ cache:
 install: true
 
 script:
-  - cd APIGateway && ./mvnw clean install
-  - cd ../ConfigServer && ./mvnw clean install
+  - cd APIGateway && ./mvnw clean install -DskipTests
+  - cd ../ConfigServer && ./mvnw clean install -DskipTests
