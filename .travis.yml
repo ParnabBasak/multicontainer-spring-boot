@@ -21,3 +21,5 @@ script:
 
 after_script
   - docker-compose up --build
+
+  
