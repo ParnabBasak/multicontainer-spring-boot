@@ -7,7 +7,8 @@ cache:
   directories:
   - $HOME/.m2
 
-before_script:
-  - cd APIGateway
-
 install: true
+
+script:
+  - cd APIGateway && ./mvnw clean install
+  - cd ConfigServer && ./mvnw clean install
