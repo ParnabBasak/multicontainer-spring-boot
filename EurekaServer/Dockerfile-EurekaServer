@@ -1,0 +1,6 @@
+FROM alpine-jdk:base
+MAINTAINER Parnab
+COPY EurekaServer/target/EurekaServer-0.0.1-SNAPSHOT.jar /opt/lib/
+ENTRYPOINT ["/usr/bin/java"]
+CMD ["-jar", "/opt/lib/EurekaServer-0.0.1-SNAPSHOT.jar"]
+EXPOSE 9091
