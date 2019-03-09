@@ -49,11 +49,11 @@ services:
             - eureka-server
         logging:
             driver: json-file
-    EmployeeDashboardService:
-        container_name: EmployeeDashboard
+    EmployeeDashBoardService:
+        container_name: EmployeeDashBoard
         build:
             context: .
-            dockerfile: EmployeeDashboard/Dockerfile-EmployeeDashboard
+            dockerfile: EmployeeDashBoard/Dockerfile-EmployeeDashBoard
         image: employeedashboard:latest
         environment:
             SPRING_APPLICATION_JSON: '{"spring": {"cloud": {"config": {"uri": "http://config-server:9090"}}}}'
@@ -76,7 +76,7 @@ services:
         container_name: ZuulServer
         build:
             context: .
-            dockerfile: APIgateway/Dockerfile-APIgateway
+            dockerfile: APIGateway/Dockerfile-APIGateway
         image: zuulserver:latest
         expose:
             - 8084
