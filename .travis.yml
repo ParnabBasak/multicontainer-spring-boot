@@ -11,4 +11,4 @@ install: true
 
 script:
   - cd APIGateway && ./mvnw clean install
-  - cd ConfigServer && ./mvnw clean install
+  - cd ../ConfigServer && ./mvnw clean install
