@@ -1,6 +1,3 @@
-sudo: required
-services: 
-  - docker
 
 language: java
 jdk: 
@@ -15,9 +12,8 @@ install: true
 script:
   - cd APIGateway && ./mvnw clean install -DskipTests
   - cd ../ConfigServer && ./mvnw clean install -DskipTests
-  
+  - cd ../EmployeeDashBoard && ./mvnw clean install -DskipTests
+  - cd ../EmployeeSearch && ./mvnw clean install -DskipTests
+  - cd ../EurekaServer && ./mvnw clean install -DskipTests
 
-after_script
-  - docker-compose up --build
 
-  
