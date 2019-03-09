@@ -20,3 +20,6 @@ script:
   - cd ../EmployeeDashBoard && ./mvnw clean install -DskipTests
   - cd ../EmployeeSearch && ./mvnw clean install -DskipTests
   - cd ../EurekaServer && ./mvnw clean install -DskipTests
+
+after_script
+  - docker-compose up --build
