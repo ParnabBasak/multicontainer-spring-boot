@@ -4,4 +4,4 @@ jdk:
   - oraclejdk8
 
 script:
-  - ./APIGateway/mvnw clean install
+  - ./APIGateway/mvn clean install
