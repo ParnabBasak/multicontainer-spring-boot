@@ -1,11 +1,16 @@
-
 language: java
+
 jdk: 
   - oraclejdk8
 
 cache:
   directories:
   - $HOME/.m2
+
+sudo: required
+
+services:
+- docker
 
 install: true
 
@@ -15,5 +20,3 @@ script:
   - cd ../EmployeeDashBoard && ./mvnw clean install -DskipTests
   - cd ../EmployeeSearch && ./mvnw clean install -DskipTests
   - cd ../EurekaServer && ./mvnw clean install -DskipTests
-
-
