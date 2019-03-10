@@ -21,10 +21,21 @@ script:
   - cd ../EmployeeSearch && ./mvnw clean install -DskipTests
   - cd ../EurekaServer && ./mvnw clean install -DskipTests
 
-after_script:
+after_success:
+  # Build Images
   - cd ../Base-Image && docker build --tag=alpine-jdk:base --rm=true . 
   - cd .. && docker build -t parnabbasak/multi-apigateway -f ./APIGateway/Dockerfile-APIGateway .
   - docker build -t parnabbasak/multi-configserver -f ./ConfigServer/Dockerfile-configserver .
   - docker build -t parnabbasak/multi-employeedashboard -f ./EmployeeDashBoard/Dockerfile-EmployeeDashBoard .
   - docker build -t parnabbasak/multi-employeesearch -f ./EmployeeSearch/Dockerfile-EmployeeSearch .
   - docker build -t parnabbasak/multi-eurekaserver -f ./EurekaServer/Dockerfile-EurekaServer .
+
+  # Log in to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+
+  # Take the built images and push to docker hub
+  - docker push parnabbasak/multi-apigateway
+  - docker push parnabbasak/multi-configserver
+  - docker push parnabbasak/multi-employeedashboard
+  - docker push parnabbasak/multi-employeesearch
+  - docker push parnabbasak/multi-eurekaserver
