@@ -6,7 +6,7 @@
 			"name": "config-server",
 			"image": "parnabbasak/multi-configserver",
 			"hostname": "config-server",
-			"essential": false,
+			"essential": true,
 			"memory": 128,
 			"portMappings": [
                 {
@@ -20,7 +20,7 @@
 			"name": "eureka-server",
 			"image": "parnabbasak/multi-eurekaserver",
 			"hostname": "eureka-server",
-			"essential": false,
+			"essential": true,
 			"memory": 128,
 			"portMappings": [
                 {
