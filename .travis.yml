@@ -26,5 +26,5 @@ after_script:
   - cd .. && docker build -t parnabbasak/multi-apigateway -f ./APIGateway/Dockerfile-APIGateway .
   - docker build -t parnabbasak/multi-configserver -f ./ConfigServer/Dockerfile-configserver .
   - docker build -t parnabbasak/multi-employeedashboard -f ./EmployeeDashBoard/Dockerfile-EmployeeDashBoard .
-  - docker build -t parnabbasak/multi-employeesearch -f ./EmployeeDashBoard/Dockerfile-EmployeeSearch .
-  - docker build -t parnabbasak/multi-eurekaserver -f ./EmployeeDashBoard/Dockerfile-EurekaServer .
+  - docker build -t parnabbasak/multi-employeesearch -f ./EmployeeSearch/Dockerfile-EmployeeSearch .
+  - docker build -t parnabbasak/multi-eurekaserver -f ./EurekaServer/Dockerfile-EurekaServer .
