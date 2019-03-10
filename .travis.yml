@@ -16,12 +16,15 @@ install: true
 
 script:
   - cd APIGateway && ./mvnw clean install -DskipTests
-  # - cd ../ConfigServer && ./mvnw clean install -DskipTests
-  # - cd ../EmployeeDashBoard && ./mvnw clean install -DskipTests
-  # - cd ../EmployeeSearch && ./mvnw clean install -DskipTests
-  # - cd ../EurekaServer && ./mvnw clean install -DskipTests
+  - cd ../ConfigServer && ./mvnw clean install -DskipTests
+  - cd ../EmployeeDashBoard && ./mvnw clean install -DskipTests
+  - cd ../EmployeeSearch && ./mvnw clean install -DskipTests
+  - cd ../EurekaServer && ./mvnw clean install -DskipTests
 
 after_script:
   - cd ../Base-Image && docker build --tag=alpine-jdk:base --rm=true . 
   - cd .. && docker build -t parnabbasak/multi-apigateway -f ./APIGateway/Dockerfile-APIGateway .
-  #- docker build -t parnabbasak/multi-configserver -f ../ConfigServer/Dockerfile-configserver ./ConfigServer
+  - docker build -t parnabbasak/multi-configserver -f ./ConfigServer/Dockerfile-configserver .
+  - docker build -t parnabbasak/multi-employeedashboard -f ./EmployeeDashBoard/Dockerfile-EmployeeDashBoard .
+  - docker build -t parnabbasak/multi-employeesearch -f ./EmployeeDashBoard/Dockerfile-EmployeeSearch .
+  - docker build -t parnabbasak/multi-eurekaserver -f ./EmployeeDashBoard/Dockerfile-EurekaServer .
