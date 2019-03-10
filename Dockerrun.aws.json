@@ -11,7 +11,7 @@
 			"portMappings": [
                 {
                     "hostPort": 9091,
-                    "containerPort": 5000
+                    "containerPort": 9091
                 }
             ]
 		}
