@@ -15,27 +15,27 @@ services:
 install: true
 
 script:
-  - cd APIGateway && ./mvnw clean install -DskipTests
-  - cd ../ConfigServer && ./mvnw clean install -DskipTests
-  - cd ../EmployeeDashBoard && ./mvnw clean install -DskipTests
-  - cd ../EmployeeSearch && ./mvnw clean install -DskipTests
-  - cd ../EurekaServer && ./mvnw clean install -DskipTests
+  - ./ConfigServer/mvnw clean install -DskipTests
+  - ./EurekaServer/mvnw clean install -DskipTests
+  - ./EmployeeDashBoard/mvnw clean install -DskipTests
+  - ./EmployeeSearch/mvnw clean install -DskipTests
+  - ./APIGateway/mvnw clean install -DskipTests
 
 after_success:
   # Build Images
-  - cd ../Base-Image && docker build --tag=alpine-jdk:base --rm=true . 
-  - cd .. && docker build -t parnabbasak/multi-apigateway -f ./APIGateway/Dockerfile-APIGateway .
-  - docker build -t parnabbasak/multi-configserver -f ./ConfigServer/Dockerfile-configserver .
-  - docker build -t parnabbasak/multi-employeedashboard -f ./EmployeeDashBoard/Dockerfile-EmployeeDashBoard .
-  - docker build -t parnabbasak/multi-employeesearch -f ./EmployeeSearch/Dockerfile-EmployeeSearch .
-  - docker build -t parnabbasak/multi-eurekaserver -f ./EurekaServer/Dockerfile-EurekaServer .
+  - docker build --tag=alpine-jdk:base --rm=true ./Base-Image 
+  - docker build -t parnabbasak/multi-configserver -f Dockerfile-configserver ./ConfigServer
+  - docker build -t parnabbasak/multi-eurekaserver -f Dockerfile-EurekaServer ./EurekaServer
+  - docker build -t parnabbasak/multi-employeedashboard -f Dockerfile-EmployeeDashBoard ./EmployeeDashBoard
+  - docker build -t parnabbasak/multi-employeesearch -f Dockerfile-EmployeeSearch ./EmployeeSearch
+  - docker build -t parnabbasak/multi-apigateway -f Dockerfile-APIGateway ./APIGateway
 
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 
   # Take the built images and push to docker hub
-  - docker push parnabbasak/multi-apigateway
   - docker push parnabbasak/multi-configserver
+  - docker push parnabbasak/multi-eurekaserver
   - docker push parnabbasak/multi-employeedashboard
   - docker push parnabbasak/multi-employeesearch
-  - docker push parnabbasak/multi-eurekaserver
+  - docker push parnabbasak/multi-apigateway
