@@ -59,9 +59,9 @@ services:
             SPRING_APPLICATION_JSON: '{"spring": {"cloud": {"config": {"uri": "http://config-server:9090"}}}}'
         entrypoint: /opt/bin/EmployeeDashBoard-entrypoint.sh
         expose:
-            - 8081
+            - 5000
         ports:
-            - 8081:8081
+            - 5000:5000
         networks:
             - emp-network
         links:
