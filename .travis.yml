@@ -22,5 +22,6 @@ script:
   # - cd ../EurekaServer && ./mvnw clean install -DskipTests
 
 after_script:
-  - docker build -t parnabbasak/multi-apigateway -f ../APIGateway/Dockerfile-APIGateway ../APIGateway
+  - cd ../Base-Image && docker build --tag=alpine-jdk:base --rm=true . 
+  - cd ../APIGateway && docker build -t parnabbasak/multi-apigateway -f Dockerfile-APIGateway .
   #- docker build -t parnabbasak/multi-configserver -f ../ConfigServer/Dockerfile-configserver ./ConfigServer
