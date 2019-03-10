@@ -22,5 +22,5 @@ script:
   - cd ../EurekaServer && ./mvnw clean install -DskipTests
 
 after_script:
-  - docker-compose up --build
-  - docker ps
+  - docker build -t parnabbasak/multi-APIGateway -f ./APIGateway/Dockerfile-APIGateway ./APIGateway
+  - docker build -t parnabbasak/multi-ConfigServer -f ./ConfigServer/Dockerfile-configserver ./ConfigServer
