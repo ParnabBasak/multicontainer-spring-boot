@@ -15,11 +15,11 @@ services:
 install: true
 
 script:
-  - ./ConfigServer/mvnw clean install -DskipTests
-  - ./EurekaServer/mvnw clean install -DskipTests
-  - ./EmployeeDashBoard/mvnw clean install -DskipTests
-  - ./EmployeeSearch/mvnw clean install -DskipTests
-  - ./APIGateway/mvnw clean install -DskipTests
+  - cd ./ConfigServer && ./mvnw clean install -DskipTests
+  - cd ../EurekaServer && ./mvnw clean install -DskipTests
+  - cd ../EmployeeDashBoard && ./mvnw clean install -DskipTests
+  - cd ../EmployeeSearch && ./mvnw clean install -DskipTests
+  - cd ../APIGateway && ./mvnw clean install -DskipTests
 
 after_success:
   # Build Images
