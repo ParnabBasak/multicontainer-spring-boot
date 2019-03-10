@@ -19,7 +19,7 @@ script:
   - cd ../EurekaServer && ./mvnw clean install -DskipTests
   - cd ../EmployeeDashBoard && ./mvnw clean install -DskipTests
   - cd ../EmployeeSearch && ./mvnw clean install -DskipTests
-  - cd ../APIGateway && ./mvnw clean install -DskipTests
+  - cd ../APIGateway && ./mvnw clean install -DskipTests && cd ..
 
 after_success:
   # Build Images
