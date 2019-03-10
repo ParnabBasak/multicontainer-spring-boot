@@ -1,0 +1,90 @@
+{
+	"AWSEBDockerrunVersion": 2,
+	"containerDefinitions": [
+		
+		{
+			"name": "config-server",
+			"image": "parnabbasak/multi-configserver",
+			"hostname": "config-server",
+			"essential": false,
+			"memory": 128,
+			"portMappings": [
+                {
+                    "hostPort": 9090,
+                    "containerPort": 9090
+                }
+            ]
+		},
+
+		{
+			"name": "eureka-server",
+			"image": "parnabbasak/multi-eurekaserver",
+			"hostname": "eureka-server",
+			"essential": false,
+			"memory": 128,
+			"portMappings": [
+                {
+                    "hostPort": 9091,
+                    "containerPort": 9091
+                }
+            ]
+		},
+
+		{
+			"name": "EmployeeDashBoard",
+			"image": "parnabbasak/multi-employeedashboard",
+			"hostname": "EmployeeDashBoard",
+			"essential": false,
+			"memory": 128,
+			"portMappings": [
+                {
+                    "hostPort": 8081,
+                    "containerPort": 8081
+                }
+            ],
+            "environment": [
+  				{
+    				"name": "SPRING_APPLICATION_JSON",
+    				"value": "{\"spring\": {\"cloud\": {\"config\": {\"uri\": \"http://config-server:9090\"}}}}"
+  				}
+			],
+            "links": ["config-server", "eureka-server"]
+		},
+
+		{
+			"name": "EmployeeSearch",
+			"image": "parnabbasak/multi-employeesearch",
+			"hostname": "EmployeeSearch",
+			"essential": false,
+			"memory": 128,
+			"portMappings": [
+                {
+                    "hostPort": 8080,
+                    "containerPort": 8080
+                }
+            ],
+            "environment": [
+  				{
+    				"name": "SPRING_APPLICATION_JSON",
+    				"value": "{\"spring\": {\"cloud\": {\"config\": {\"uri\": \"http://config-server:9090\"}}}}"
+  				}
+			],
+            "links": ["config-server", "eureka-server"]
+		},
+
+		{
+			"name": "ZuulServer",
+			"image": "parnabbasak/multi-apigateway",
+			"hostname": "ZuulServer",
+			"essential": false,
+			"memory": 128,
+			"portMappings": [
+                {
+                    "hostPort": 8084,
+                    "containerPort": 8084
+                }
+            ],
+            "links": ["eureka-server"]
+		}
+	]
+}

@@ -39,3 +39,16 @@ after_success:
   - docker push parnabbasak/multi-employeedashboard
   - docker push parnabbasak/multi-employeesearch
   - docker push parnabbasak/multi-apigateway
+
+deploy:
+    provider: elasticbeanstalk
+    region: "us-east-1"
+    app: "multicontainer-spring-boot"
+    env: "MulticontainerSpringBoot-env"
+    bucket_name: "elasticbeanstalk-us-east-1-281072246466"
+    bucket_path: "multicontainer-spring-boot"
+    on:
+      branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key:
+      secure: "$AWS_SECRET_KEY"
