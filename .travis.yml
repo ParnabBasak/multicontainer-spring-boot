@@ -23,5 +23,5 @@ script:
 
 after_script:
   - cd ../Base-Image && docker build --tag=alpine-jdk:base --rm=true . 
-  - cd ../APIGateway && docker build -t parnabbasak/multi-apigateway -f Dockerfile-APIGateway .
+  - cd .. && docker build -t parnabbasak/multi-apigateway -f ./APIGateway/Dockerfile-APIGateway .
   #- docker build -t parnabbasak/multi-configserver -f ../ConfigServer/Dockerfile-configserver ./ConfigServer
