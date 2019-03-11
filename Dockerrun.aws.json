@@ -6,7 +6,7 @@
 			"image": "parnabbasak/multi-configserver",
 			"hostname": "config-server",
 			"essential": true,
-			"memory": 128,
+			"memory": 512,
 			"portMappings": [
                 {
                     "hostPort": 9090,
