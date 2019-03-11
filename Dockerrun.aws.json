@@ -27,6 +27,48 @@
                     "containerPort": 9091
                 }
             ]
+		},
+
+		{
+			"name": "EmployeeDashBoard",
+			"image": "parnabbasak/multi-employeedashboard",
+			"hostname": "EmployeeDashBoard",
+			"essential": false,
+			"memory": 512,
+			"portMappings": [
+                {
+                    "hostPort": 8081,
+                    "containerPort": 5000
+                }
+            ],
+            "environment": [
+  				{
+    				"name": "SPRING_APPLICATION_JSON",
+    				"value": "{\"spring\": {\"cloud\": {\"config\": {\"uri\": \"http://config-server:9090\"}}}}"
+  				}
+			],
+            "links": ["config-server", "eureka-server"]
+		},
+
+		{
+			"name": "EmployeeSearch",
+			"image": "parnabbasak/multi-employeesearch",
+			"hostname": "EmployeeSearch",
+			"essential": false,
+			"memory": 512,
+			"portMappings": [
+                {
+                    "hostPort": 8080,
+                    "containerPort": 5000
+                }
+            ],
+            "environment": [
+  				{
+    				"name": "SPRING_APPLICATION_JSON",
+    				"value": "{\"spring\": {\"cloud\": {\"config\": {\"uri\": \"http://config-server:9090\"}}}}"
+  				}
+			],
+            "links": ["config-server", "eureka-server"]
 		}
 	]
 }
