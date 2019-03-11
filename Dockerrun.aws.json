@@ -20,7 +20,7 @@
 			"image": "parnabbasak/multi-eurekaserver",
 			"hostname": "eureka-server",
 			"essential": true,
-			"memory": 256,
+			"memory": 512,
 			"portMappings": [
                 {
                     "hostPort": 9091,
