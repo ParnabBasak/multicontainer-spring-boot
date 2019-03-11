@@ -1,13 +1,26 @@
 {
 	"AWSEBDockerrunVersion": 2,
 	"containerDefinitions": [
-		
+		{
+			"name": "config-server",
+			"image": "parnabbasak/multi-configserver",
+			"hostname": "config-server",
+			"essential": true,
+			"memory": 512,
+			"portMappings": [
+                {
+                    "hostPort": 9090,
+                    "containerPort": 9090
+                }
+            ]
+		},
+
 		{
 			"name": "eureka-server",
 			"image": "parnabbasak/multi-eurekaserver",
 			"hostname": "eureka-server",
 			"essential": true,
-			"memory": 128,
+			"memory": 512,
 			"portMappings": [
                 {
                     "hostPort": 9091,
